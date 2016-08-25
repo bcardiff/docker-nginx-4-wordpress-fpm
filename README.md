@@ -1,4 +1,4 @@
-# docker-nginx-4-wordpress-fpm
+# nginx-4-wordpress-fpm
 
 `nginx-4-wordpress-fpm` docker images complements `wordpress:*-fpm` official images. Apache alternatives serves http request. In order to allow PHP-fpm serve http request a webserver is needed (nginx).
 
@@ -25,7 +25,7 @@ services:
 
 
   web:
-    image: nginx-4-wordpress-fpm
+    image: bcardiff/nginx-4-wordpress-fpm
     environment:
       - PHP_FPM_SOCK=php-fpm:9000
     ports:
