@@ -1,9 +1,4 @@
 server {
-  server_name _;
-  return 302 $scheme://example.com$request_uri;
-}
-
-server {
   server_name localhost;
 
   client_max_body_size  2M;
