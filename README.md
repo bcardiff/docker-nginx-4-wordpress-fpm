@@ -5,6 +5,7 @@
 This image uses the following environment variables:
  * `PHP_FPM_SOCK` to customize the location of the upstream php-fpm socket (defaults to `9000`).
  * `SERVER_NAME` to set the hostname that nginx will listen on (defaults to `localhost`).
+ * `HTTP_PORT` to set the port that nginx will listen on (defaults to `80`)
 
 
 Following, a `docker-compose.yml` that prepares a ready to use wordpress installation.

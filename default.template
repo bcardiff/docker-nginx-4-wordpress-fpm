@@ -1,5 +1,6 @@
 server {
   server_name ${SERVER_NAME};
+  listen ${HTTP_PORT}
 
   client_max_body_size  2M;
   proxy_connect_timeout 300;
