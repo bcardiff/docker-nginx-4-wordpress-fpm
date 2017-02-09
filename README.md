@@ -2,7 +2,12 @@
 
 `nginx-4-wordpress-fpm` docker images complements `wordpress:*-fpm` [official images](https://hub.docker.com/_/wordpress/). Apache alternatives serves http request. In order to allow PHP-fpm serve http request a webserver is needed (nginx).
 
-This image uses `PHP_FPM_SOCK` environment variable to customize the location of the socket (usually port 9000 of php-fpm container).
+This image uses the following environment variables:
+ * `PHP_FPM_SOCK` to customize the location of the upstream php-fpm socket (defaults to `9000`).
+ * `SERVER_NAME` to set the hostname that nginx will listen on (defaults to `localhost`).
+ * `HTTP_PORT` to set the port that nginx will listen on (defaults to `80`)
+ * `CLIENT_MAX_BODY_SIZE` to set the maximum body size of the POST (defaults to `2m`)
+
 
 Following, a `docker-compose.yml` that prepares a ready to use wordpress installation.
 
