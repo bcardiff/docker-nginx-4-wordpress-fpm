@@ -4,6 +4,13 @@
 
 This image uses `PHP_FPM_SOCK` environment variable to customize the location of the socket (usually port 9000 of php-fpm container).
 
+This image serves the static files directly without going to the wordpress container.
+
+This image is prepared to work with [nginx-cache](https://wordpress.org/plugins/nginx-cache/) wordpress plugin using `/data/nginx/cache` as **cache zone path**.
+The plugin running in the wordpress container will remove the `/data/nginx/cache` directory cleaning up the cache for the nginx running in the `nginx-4-wordpress-fpm` container.
+
+Note that both container need to share cache and html volumes.
+
 Following, a `docker-compose.yml` that prepares a ready to use wordpress installation.
 
 ```
@@ -22,6 +29,7 @@ services:
       - WORDPRESS_DB_PASSWORD=secret
     volumes:
       - './data/html:/var/www/html'
+      - './data/nginx:/data/nginx'
 
   web:
     image: bcardiff/nginx-4-wordpress-fpm
@@ -31,4 +39,5 @@ services:
       - 8080:80
     volumes:
       - './data/html:/var/www/html'
+      - './data/nginx:/data/nginx'
 ```

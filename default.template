@@ -1,3 +1,5 @@
+include /etc/nginx/global/cache-general.conf;
+
 server {
   server_name localhost;
 
@@ -12,6 +14,7 @@ server {
 
   include /etc/nginx/global/restrictions.conf;
   include /etc/nginx/global/wordpress.conf;
+  include /etc/nginx/global/gzip.conf;
 
   # Pass all .php files onto a php-fpm/php-fcgi server.
   location ~ [^/]\.php(/|$) {
@@ -26,5 +29,7 @@ server {
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
   # fastcgi_intercept_errors on;
     fastcgi_pass ${PHP_FPM_SOCK};
+
+    include /etc/nginx/global/cache-location.conf;
   }
 }
